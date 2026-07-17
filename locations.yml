@@ -1,3 +1,6 @@
-defaultStorageMapping: null
+defaultStorageMapping: BRONZE
 fileVersion: 1
-locations: []
+locations:
+  - BRONZE
+  - GOLD
+  - SILVER
