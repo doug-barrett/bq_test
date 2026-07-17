@@ -1,0 +1,219 @@
+fileVersion: 1
+id: A561DA34-43F5-4D66-8141-D8B57E43B766
+name: v_dim_yellow_cab_trips
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Semantic view over the yellow cab trips dimension.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: view
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0E2FCC6D-5B98-4142-AE9E-DCF1C6C65D3A
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dim_yellow_cab_trip_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7BF15507-45BA-416D-8C92-9D9D8BECE780
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: E64436D8-F5F3-4695-95C6-15AC34372CA3
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: INT64
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: A5E3F806-1782-4FBC-987D-263A910EE498
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4636FA9F-F83A-46A5-B7F9-95BE9EF1B20B
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: STRING
+        description: ""
+        name: vendor_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: D8B4307B-50BD-4B81-ABF9-A30718D555A8
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6C496178-0423-4001-A525-8D908994CD52
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: STRING
+        description: ""
+        name: payment_type_desc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0A6A1E4F-01B9-400C-808C-10D82AB98CFC
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 52ED3809-2B14-45DA-95A3-0A0CB78A4C33
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: DATETIME
+        description: ""
+        name: pickup_datetime
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0748F417-981B-4EE2-8BA4-E3D0EF82567C
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7BC05863-332E-4CDC-95F0-F6FC958925EC
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: DATETIME
+        description: ""
+        name: dropoff_datetime
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 34E64D2D-A97A-41D6-8944-53209DCE92BF
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6DDFB37C-F048-4C61-A9D4-1000AFCEAD14
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: INT64
+        description: ""
+        name: passenger_count
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: A8F140DB-0866-4F3E-9C60-AB78F0E99518
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8E320661-D19D-4D09-AF48-C6E561D21D87
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: trip_distance
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2FB6E13A-2258-4262-A449-225F88FB77FD
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06735EAE-BFA2-4A59-938B-69F577B9C2FE
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: INT64
+        description: ""
+        name: pu_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 115B3541-0F9A-4CAB-A9BD-D6187529F5FA
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06E77C71-1CD0-4468-9272-94213DC799AB
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: INT64
+        description: ""
+        name: do_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2AAEE3BD-227F-4052-A5FD-C66C91D4A313
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: C5CB9335-CEED-4491-9885-583AB445ED76
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: fare_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0BFBE36F-649A-43C0-B6C1-43A861872D85
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07DE9842-1E6F-4D66-9F45-55A24E254E30
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: tip_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: BE8BCAC6-0C4E-4D1C-80AC-3C64DC85253E
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 736A1B39-1C96-457F-A75F-B67D0BFF52A4
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ADC84E5A-383B-40EB-80E8-C3A7F90ABF82
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+    cteString: ""
+    sourceMapping:
+      - aliases:
+          dim_yellow_cab_trips: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: dim_yellow_cab_trips
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'dim_yellow_cab_trips') }} AS dim_yellow_cab_trips
+        name: v_dim_yellow_cab_trips
+        noLinkRefs: []
+  name: v_dim_yellow_cab_trips
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
