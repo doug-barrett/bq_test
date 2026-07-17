@@ -1,0 +1,13 @@
+{{ stage('Truncate Dimension Table') }}
+TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
+
+{% for source in sources %}
+{{ stage('Load Dimension Table') }}
+INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+SELECT
+{% for col in source.columns %}
+    {{ get_source_transform(col) }} AS `{{ col.name }}`
+    {%- if not loop.last -%}, {% endif %}
+{% endfor %}
+{{ source.join }}
+{% endfor %}

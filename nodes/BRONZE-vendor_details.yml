@@ -1,0 +1,74 @@
+fileVersion: 1
+type: Node
+id: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+name: vendor_details
+operation:
+  description: ""
+  sqlType: Source
+  database: sales-eng-project
+  schema: NY_TAXI
+  locationName: BRONZE
+  isMultisource: false
+  materializationType: table
+  table: vendor_details
+  config: {}
+  metadata:
+    columns:
+      - name: vendor_id
+        dataType: INT64
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: b1728cea-3d77-4087-b21b-61a8ae230585
+          stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: phone
+        dataType: STRING
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 341f417b-a0a0-4113-8b2e-5e1ee5c64bcd
+          stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: drivers
+        dataType: INT64
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 9c0e73d2-97fa-4ebe-9ad4-97959a2fb5f0
+          stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: hq_address_details
+        dataType: JSON
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
+          stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+    sourceMapping: []
+    appliedNodeTests: []
+  deployEnabled: true
+  version: 1
+  name: vendor_details
+  type: sourceInput

@@ -1,0 +1,74 @@
+fileVersion: 1
+type: Node
+id: 76158d45-0af6-4a61-8f5e-3346233347b3
+name: location
+operation:
+  description: ""
+  sqlType: Source
+  database: sales-eng-project
+  schema: NY_TAXI
+  locationName: BRONZE
+  isMultisource: false
+  materializationType: table
+  table: location
+  config: {}
+  metadata:
+    columns:
+      - name: location_id
+        dataType: INT64
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 2d926ad3-e6c2-49da-9cdc-466ec558a5ca
+          stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: borough
+        dataType: STRING
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 4f62c2b0-6318-468e-a4aa-d5add849e41c
+          stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: zone
+        dataType: STRING
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 1f10fa12-71e0-4343-afe3-ae12e3813562
+          stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: service_zone
+        dataType: STRING
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 678f7ef6-90ae-49e5-b61c-c642cf4aff23
+          stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+    sourceMapping: []
+    appliedNodeTests: []
+  deployEnabled: true
+  version: 1
+  name: location
+  type: sourceInput

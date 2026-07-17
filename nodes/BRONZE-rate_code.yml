@@ -1,0 +1,48 @@
+fileVersion: 1
+type: Node
+id: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+name: rate_code
+operation:
+  description: ""
+  sqlType: Source
+  database: sales-eng-project
+  schema: NY_TAXI
+  locationName: BRONZE
+  isMultisource: false
+  materializationType: table
+  table: rate_code
+  config: {}
+  metadata:
+    columns:
+      - name: rate_code_id
+        dataType: INT64
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: f69c261e-32f8-4209-82c1-755a17e236ea
+          stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+      - name: rate_code
+        dataType: STRING
+        description: ""
+        nullable: true
+        columnReference:
+          columnCounter: 0bf87fef-aadc-4c3f-b7b8-9ad86cb946fc
+          stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+        sourceColumnReferences:
+          - transform: ""
+            columnReferences: []
+        config: {}
+        transform: ""
+        appliedColumnTests: {}
+    sourceMapping: []
+    appliedNodeTests: []
+  deployEnabled: true
+  version: 1
+  name: rate_code
+  type: sourceInput

@@ -1,0 +1,13 @@
+fileVersion: 2
+id: 24298d54-248d-48f4-bfe0-5a0e23df2bf7
+isDisabled: false
+metadata:
+  defaultStorageLocation: GOLD
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Dimension V2
+    short: dim
+    plural: Dimensions V2
+    tagColor: '#1E339A'
+name: Dimension V2
+type: NodeType
