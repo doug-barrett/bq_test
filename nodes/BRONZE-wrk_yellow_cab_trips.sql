@@ -23,7 +23,9 @@ SELECT
      t.total_amount AS "total_amount",
      t.congestion_surcharge AS "congestion_surcharge",
      t.airport_fee AS "airport_fee",
-     t.cbd_congestion_fee AS "cbd_congestion_fee"
+     t.cbd_congestion_fee AS "cbd_congestion_fee",
+     CAST(DATETIME_DIFF(t.dropoff_datetime, t.pickup_datetime, SECOND) / 60.0 AS FLOAT64) AS "trip_duration_minutes",
+     CAST(SAFE_DIVIDE(t.trip_distance, DATETIME_DIFF(t.dropoff_datetime, t.pickup_datetime, SECOND) / 3600.0) AS FLOAT64) AS "avg_speed_mph"
 FROM {{ ref('BRONZE', 'yellow_cab_trips') }} AS t
 LEFT JOIN {{ ref('BRONZE', 'vendor') }} AS v
     ON t.vendor_id = v.vendor_id

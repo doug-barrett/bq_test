@@ -352,6 +352,34 @@ operation:
               - columnCounter: cbd_congestion_fee
                 stepCounter: 0FC43CE6-BA76-4CC6-85B6-9342BDB76790
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: F2FA4399-6D96-48A1-A2F7-32DE38AAFC16
+          stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+        config: {}
+        dataType: FLOAT64
+        description: Trip duration in minutes.
+        name: trip_duration_minutes
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: trip_duration_minutes
+                stepCounter: 0FC43CE6-BA76-4CC6-85B6-9342BDB76790
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7B092FAA-7790-4D2F-B734-07133AB2A41D
+          stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+        config: {}
+        dataType: FLOAT64
+        description: Average trip speed in miles per hour.
+        name: avg_speed_mph
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: avg_speed_mph
+                stepCounter: 0FC43CE6-BA76-4CC6-85B6-9342BDB76790
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []

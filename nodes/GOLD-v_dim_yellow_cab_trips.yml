@@ -197,6 +197,34 @@ operation:
               - columnCounter: ADC84E5A-383B-40EB-80E8-C3A7F90ABF82
                 stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: B9CE7B21-0FD6-4CFB-AC65-DCEE59C3FDA2
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: Trip duration in minutes.
+        name: trip_duration_minutes
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: F2FA4399-6D96-48A1-A2F7-32DE38AAFC16
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: C28486E0-E88B-47BB-9586-643883040B0C
+          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
+        config: {}
+        dataType: FLOAT64
+        description: Average trip speed in miles per hour.
+        name: avg_speed_mph
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7B092FAA-7790-4D2F-B734-07133AB2A41D
+                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+            transform: ""
     cteString: ""
     sourceMapping:
       - aliases:
