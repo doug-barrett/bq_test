@@ -1,0 +1,356 @@
+fileVersion: 1
+id: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+name: yellow_cab_trips
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9738db38-287e-4f42-805d-3bc965650bf2
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 845708ff-d6c8-48f5-ae02-002681616478
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: DATETIME
+        defaultValue: ""
+        description: ""
+        name: pickup_datetime
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7fcc10e-5ed7-4d7e-82d1-d6f898b0ddc2
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: DATETIME
+        defaultValue: ""
+        description: ""
+        name: dropoff_datetime
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3deadfe2-0596-4a04-a345-e313a7d2ae4f
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: passenger_count
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46ea1ba1-ba31-4572-b579-2b33ae2fcb8b
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: trip_distance
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cbc1bbc-12a1-4426-b6bf-5c0ae6d3d496
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: ratecode_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa80f749-2f4e-49c1-af35-9f95e3b01153
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: store_and_fwd_flag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14a51f00-98e1-47a9-af98-6a2cc293d8f2
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: pu_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b512de2e-3a89-404c-a798-b73c66d720b4
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: do_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c38c1eae-c90e-4c57-adb7-a1b77db556fd
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: payment_type_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f269b2cc-16ec-4112-8341-73a94c0a1583
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: fare_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85c3e788-ea73-4f4c-b02e-95c84734773a
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: extra
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33ad0b87-3535-49a8-9ac4-46f908913748
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: mta_tax
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 526fe70b-d304-4538-aeb4-ba4131f9759d
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: tip_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ac0233c-1f4c-42fa-bcf3-cd861265f793
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: tolls_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68232787-05cb-443c-93bb-5fe64db1bf56
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: improvement_surcharge
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a673fa41-529a-4148-a672-fe796e1be7e2
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: total_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eaf9b3ee-d4d7-4d15-9806-e75f78e7591c
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: congestion_surcharge
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c82ffdab-ba09-454e-b989-93c6146a4f59
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: airport_fee
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec55218a-c946-4709-82a4-3fd9a0b1370c
+          stepCounter: e61d3372-36ee-4b41-884b-a5eb2a10d0f7
+        config: {}
+        dataType: FLOAT64
+        defaultValue: ""
+        description: ""
+        name: cbd_congestion_fee
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: yellow_cab_trips
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node
