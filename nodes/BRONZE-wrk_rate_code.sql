@@ -4,6 +4,6 @@ WITH x AS (
 SELECT
      "rate_code_id" AS "rate_code_id",
      "rate_code" AS "rate_code"
-FROM {{ ref('BRONZE', 'rate_code') }}
+FROM {{ ref('BRONZE', 'rate_code') }} AS src
 )
 SELECT * FROM x

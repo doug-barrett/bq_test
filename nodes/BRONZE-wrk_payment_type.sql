@@ -4,6 +4,6 @@ WITH x AS (
 SELECT
      "payment_type_id" AS "payment_type_id",
      "payment_type" AS "payment_type"
-FROM {{ ref('BRONZE', 'payment_type') }}
+FROM {{ ref('BRONZE', 'payment_type') }} AS src
 )
 SELECT * FROM x
