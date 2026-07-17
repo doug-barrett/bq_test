@@ -1,0 +1,79 @@
+fileVersion: 1
+id: C89158C6-1C6E-4356-B7EE-01AA226CA3A5
+name: v_dim_payment_type
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Semantic view over the payment type dimension.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: view
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80F1610D-6DB8-43A3-A5E6-B0A63A01BA0E
+          stepCounter: C89158C6-1C6E-4356-B7EE-01AA226CA3A5
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dim_payment_type_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: daaf9ffd-c717-48de-ab96-2672f788c90d
+                stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: A58A9CC0-7BF8-4C2B-A29C-1607F127C8CF
+          stepCounter: C89158C6-1C6E-4356-B7EE-01AA226CA3A5
+        config: {}
+        dataType: INT64
+        description: ""
+        name: payment_type_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 258a2a17-75bf-40e5-babd-8db01a97fdf0
+                stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: C1E50962-8081-42A2-A133-A83315476FE5
+          stepCounter: C89158C6-1C6E-4356-B7EE-01AA226CA3A5
+        config: {}
+        dataType: STRUCT<PAYMENT_TYPE_ID INT64, PAYMENT_TYPE STRING>
+        description: ""
+        name: payment_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db7b8ed3-3e8a-4516-9e1d-b58018e5d13c
+                stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+            transform: ""
+    cteString: ""
+    sourceMapping:
+      - aliases:
+          dim_payment_type: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: dim_payment_type
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'dim_payment_type') }} AS dim_payment_type
+        name: v_dim_payment_type
+        noLinkRefs: []
+  name: v_dim_payment_type
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

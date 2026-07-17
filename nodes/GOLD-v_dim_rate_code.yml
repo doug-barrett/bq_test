@@ -1,0 +1,79 @@
+fileVersion: 1
+id: A6AB459D-D077-4F3E-B302-BFE022B52905
+name: v_dim_rate_code
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Semantic view over the rate code dimension.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: view
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: F75E0A2A-871B-42BF-A286-395EC5FD3113
+          stepCounter: A6AB459D-D077-4F3E-B302-BFE022B52905
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dim_rate_code_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16636663-7ac7-4758-8e04-ebb068e5d5c8
+                stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0F3A742E-80D7-47C1-A042-9D3C90C22911
+          stepCounter: A6AB459D-D077-4F3E-B302-BFE022B52905
+        config: {}
+        dataType: INT64
+        description: ""
+        name: rate_code_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4ee6e362-6941-4f67-9680-a467e71b7e5b
+                stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 84E81F1A-95D5-47E8-B4A9-B2B52B90EEEB
+          stepCounter: A6AB459D-D077-4F3E-B302-BFE022B52905
+        config: {}
+        dataType: STRING
+        description: ""
+        name: rate_code
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7e11189-a366-43cc-990c-a982c278c8d5
+                stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+            transform: ""
+    cteString: ""
+    sourceMapping:
+      - aliases:
+          dim_rate_code: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: dim_rate_code
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'dim_rate_code') }} AS dim_rate_code
+        name: v_dim_rate_code
+        noLinkRefs: []
+  name: v_dim_rate_code
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
