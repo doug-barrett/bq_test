@@ -28,14 +28,13 @@ does not permit copying or modification for any other purpose.
     )
     {{ sources[0].cteString | replace('"', '`')}}
     (
-        SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
+        SELECT 
         {%- for col in sources[0].columns %}
             {{ get_source_transform(col) | replace('"', '`') }} AS `{{ col.name }}`
             {%- if not loop.last -%}, {%- endif %}
         {%- endfor %}
 
         {{ sources[0].join | replace('"', '`')  }}
-        {% if config.groupByAll %} GROUP BY ALL {% endif %}
     )
 
 {%- else %}
