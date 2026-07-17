@@ -1,0 +1,194 @@
+fileVersion: 1
+id: 80095ed3-ccfe-439b-9f92-856110c09dd3
+name: dim_payment_type
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION DISTINCT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: BRONZE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: daaf9ffd-c717-48de-ab96-2672f788c90d
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: STRING
+        defaultValue: GENERATE_UUID()
+        description: ""
+        isSurrogateKey: true
+        name: dim_payment_type_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 258a2a17-75bf-40e5-babd-8db01a97fdf0
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: payment_type_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: payment_type_id
+                stepCounter: 08ecb258-ba68-438c-abd7-9f25cbc5bb2d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db7b8ed3-3e8a-4516-9e1d-b58018e5d13c
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: STRUCT<PAYMENT_TYPE_ID INT64, PAYMENT_TYPE STRING>
+        description: ""
+        name: payment_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: payment_type
+                stepCounter: 08ecb258-ba68-438c-abd7-9f25cbc5bb2d
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: be8bab82-8540-48bc-955e-98a68f9094db
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: INT
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: system_version
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ebf1463-590c-42ba-930a-aead691ff52b
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: system_current_flag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0358d668-fe18-4de8-a85d-06de204d3f19
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: system_start_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6083cbc-2199-4afd-9ff9-5f75ea84a30e
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: system_end_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29c9f4c6-3ba0-4fe8-86ef-1f42baef609d
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d196bd95-b99a-4a92-9d53-c7a80cb4ea2a
+          stepCounter: 80095ed3-ccfe-439b-9f92-856110c09dd3
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          wrk_payment_type: 08ecb258-ba68-438c-abd7-9f25cbc5bb2d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: wrk_payment_type
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'wrk_payment_type') }} `wrk_payment_type`
+        name: dim_payment_type
+        noLinkRefs: []
+  name: dim_payment_type
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

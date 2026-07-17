@@ -1,0 +1,194 @@
+fileVersion: 1
+id: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+name: dim_rate_code
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION DISTINCT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: BRONZE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16636663-7ac7-4758-8e04-ebb068e5d5c8
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: STRING
+        defaultValue: GENERATE_UUID()
+        description: ""
+        isSurrogateKey: true
+        name: dim_rate_code_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ee6e362-6941-4f67-9680-a467e71b7e5b
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: rate_code_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: rate_code_id
+                stepCounter: 7d252ffe-c672-43f3-88bc-c5a0184b70a8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7e11189-a366-43cc-990c-a982c278c8d5
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: STRING
+        description: ""
+        name: rate_code
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: rate_code
+                stepCounter: 7d252ffe-c672-43f3-88bc-c5a0184b70a8
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70e8ebb3-fa9b-4be3-a780-3dffbfc6cf7e
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: INT
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: system_version
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 59106003-e0c5-4daf-b2d5-a72ea77f63de
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: system_current_flag
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 72d15890-5d14-476d-848f-2a644577dde4
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: system_start_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eec2c040-5b8b-42bb-99ce-66dd616dfd61
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: system_end_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 952c3e3b-91cc-46c4-8c65-67c1e5f7b181
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ea4891a-92e2-4c6b-8543-1d1018488f03
+          stepCounter: 5d0cdf31-3659-41ca-9df2-73c1f590cc04
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          wrk_rate_code: 7d252ffe-c672-43f3-88bc-c5a0184b70a8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: wrk_rate_code
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'wrk_rate_code') }} `wrk_rate_code`
+        name: dim_rate_code
+        noLinkRefs: []
+  name: dim_rate_code
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node
