@@ -9,19 +9,7 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Description    : Creates a table with custome SQL logic  == #}
 {#---------------------------------------------------------------------------------------------#}
 
-{# == To run data quality tests before data insertion == #}
-{{ run_tests('Before') }}
-
 {%- if node.materializationType | lower == 'table' %}
-
-    {# --- Pre-SQL --- #}
-    {%- if config.preSQL is defined and config.preSQL.parameters is defined -%}
-        {%- for sql in config.preSQL.parameters -%}
-            {{ stage('Pre-SQL ' + loop.index|string) }}
-            {{ sql }}
-        {%- endfor %}
-    {%- endif %}
-
 	{# == Truncate data before data insertion  == #}
     {%- if config.truncateBefore %}
         {{ stage('Truncate ' + node.materializationType) }}
@@ -50,19 +38,8 @@ does not permit copying or modification for any other purpose.
         {% if config.groupByAll %} GROUP BY ALL {% endif %}
     )
 
-    {# --- Post-SQL --- #}
-    {%- if config.postSQL is defined and config.postSQL.parameters is defined -%}
-        {%- for sql in config.postSQL.parameters -%}
-            {{ stage('Post-SQL ' + loop.index|string) }}
-            {{ sql }}
-        {%- endfor %}
-    {%- endif %}
-
 {%- else %}
 	{{ stage('Load Skipped for View') }}
 	-- The node {{node.name}} is materialized as View. Therefore, a Load operation is not supported.
 	SELECT 1 AS INFO_MESSAGE WHERE FALSE
 {%- endif %}
-
-{# == To run data quality tests after data insertion == #}
-{{ run_tests('After') }}
