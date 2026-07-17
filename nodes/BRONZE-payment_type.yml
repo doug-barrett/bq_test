@@ -1,48 +1,45 @@
 fileVersion: 1
-type: Node
 id: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
 name: payment_type
 operation:
-  description: ""
-  sqlType: Source
-  database: sales-eng-project
-  schema: NY_TAXI
-  locationName: BRONZE
-  isMultisource: false
-  materializationType: table
-  table: payment_type
   config: {}
+  database: sales-eng-project
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: BRONZE
+  materializationType: table
   metadata:
     columns:
-      - name: payment_type_id
-        dataType: INT64
-        description: ""
-        nullable: true
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: a503198f-6300-4a7e-99d1-60e1c68f9a8f
           stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
-        sourceColumnReferences:
-          - transform: ""
-            columnReferences: []
         config: {}
-        transform: ""
-        appliedColumnTests: {}
-      - name: payment_type
-        dataType: STRUCT<PAYMENT_TYPE_ID INT64, PAYMENT_TYPE STRING>
+        dataType: INT64
         description: ""
+        name: payment_type_id
         nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: f6634b12-be74-4396-a8b5-d7102576c4f0
           stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
-        sourceColumnReferences:
-          - transform: ""
-            columnReferences: []
         config: {}
+        dataType: STRUCT<PAYMENT_TYPE_ID INT64, PAYMENT_TYPE STRING>
+        description: ""
+        name: payment_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
         transform: ""
-        appliedColumnTests: {}
-    sourceMapping: []
-    appliedNodeTests: []
-  deployEnabled: true
-  version: 1
   name: payment_type
+  schema: NY_TAXI
+  sqlType: Source
   type: sourceInput
+  version: 1
+type: Node
