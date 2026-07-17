@@ -5,7 +5,7 @@ SELECT
      t.vendor_id AS "vendor_id",
      v.vendor_name AS "vendor_name",
      t.payment_type_id AS "payment_type_id",
-     CAST(p.payment_type.PAYMENT_TYPE AS STRING) AS "payment_type_desc",
+     CAST(p.payment_type AS STRING) AS "payment_type_desc",
      t.pickup_datetime AS "pickup_datetime",
      t.dropoff_datetime AS "dropoff_datetime",
      t.passenger_count AS "passenger_count",
