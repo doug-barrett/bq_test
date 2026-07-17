@@ -218,10 +218,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: BRONZE
+          - locationName: GOLD
             nodeName: fct_yellow_cab_trips
         join:
-          joinCondition: FROM {{ ref('BRONZE', 'fct_yellow_cab_trips') }} AS fct_yellow_cab_trips
+          joinCondition: FROM {{ ref('GOLD', 'fct_yellow_cab_trips') }} AS fct_yellow_cab_trips
         name: v_fct_yellow_cab_trips
         noLinkRefs: []
   name: v_fct_yellow_cab_trips

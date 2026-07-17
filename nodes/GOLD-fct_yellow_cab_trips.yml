@@ -18,7 +18,7 @@ operation:
   deployEnabled: true
   description: Yellow cab trip facts enriched with vendor and payment type attributes.
   isMultisource: false
-  locationName: BRONZE
+  locationName: GOLD
   materializationType: table
   metadata:
     appliedNodeTests: []
