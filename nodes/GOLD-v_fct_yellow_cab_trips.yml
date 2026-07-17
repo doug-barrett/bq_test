@@ -1,6 +1,6 @@
 fileVersion: 1
 id: A561DA34-43F5-4D66-8141-D8B57E43B766
-name: v_dim_yellow_cab_trips
+name: v_fct_yellow_cab_trips
 operation:
   config:
     groupByAll: false
@@ -9,26 +9,12 @@ operation:
     selectDistinct: false
   database: ""
   deployEnabled: true
-  description: Semantic view over the yellow cab trips dimension.
+  description: Semantic view over the yellow cab trips fact.
   isMultisource: false
   locationName: GOLD
   materializationType: view
   metadata:
     columns:
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 0E2FCC6D-5B98-4142-AE9E-DCF1C6C65D3A
-          stepCounter: A561DA34-43F5-4D66-8141-D8B57E43B766
-        config: {}
-        dataType: STRING
-        description: ""
-        name: dim_yellow_cab_trip_key
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 7BF15507-45BA-416D-8C92-9D9D8BECE780
-                stepCounter: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
-            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: E64436D8-F5F3-4695-95C6-15AC34372CA3
@@ -228,17 +214,17 @@ operation:
     cteString: ""
     sourceMapping:
       - aliases:
-          dim_yellow_cab_trips: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
+          fct_yellow_cab_trips: 73FC516C-7191-4CF5-B2CD-97FA7F45E90D
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: BRONZE
-            nodeName: dim_yellow_cab_trips
+            nodeName: fct_yellow_cab_trips
         join:
-          joinCondition: FROM {{ ref('BRONZE', 'dim_yellow_cab_trips') }} AS dim_yellow_cab_trips
-        name: v_dim_yellow_cab_trips
+          joinCondition: FROM {{ ref('BRONZE', 'fct_yellow_cab_trips') }} AS fct_yellow_cab_trips
+        name: v_fct_yellow_cab_trips
         noLinkRefs: []
-  name: v_dim_yellow_cab_trips
+  name: v_fct_yellow_cab_trips
   overrideSQL: false
   schema: ""
   sqlType: View
