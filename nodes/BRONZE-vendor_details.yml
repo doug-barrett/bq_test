@@ -2,21 +2,22 @@ fileVersion: 1
 id: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
 name: vendor_details
 operation:
-  config: {}
-  database: sales-eng-project
+  database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
   locationName: BRONZE
-  materializationType: table
   metadata:
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: b1728cea-3d77-4087-b21b-61a8ae230585
           stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: vendor_id
         nullable: true
@@ -24,12 +25,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 341f417b-a0a0-4113-8b2e-5e1ee5c64bcd
           stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: phone
         nullable: true
@@ -37,12 +42,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 9c0e73d2-97fa-4ebe-9ad4-97959a2fb5f0
           stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: drivers
         nullable: true
@@ -50,12 +59,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
           stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
         config: {}
         dataType: JSON
+        defaultValue: "NULL"
         description: ""
         name: hq_address_details
         nullable: true
@@ -64,7 +77,7 @@ operation:
             transform: ""
         transform: ""
   name: vendor_details
-  schema: NY_TAXI
+  schema: ""
   sqlType: Source
   type: sourceInput
   version: 1

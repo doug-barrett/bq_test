@@ -1,0 +1,126 @@
+fileVersion: 1
+id: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+name: dim_payment_type
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION DISTINCT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b740593-abc9-420c-a99f-2bb854102c84
+          stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: dim_payment_type_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85c90d51-9163-4860-a643-45933b436d00
+          stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: payment_type_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02144859-b82a-4793-b185-c2e84cd12aa8
+                stepCounter: 81450784-fd5d-40da-a8ce-dfd4443038cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d46bb36-0267-408b-8f51-e784436a27dc
+          stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+        config: {}
+        dataType: STRING
+        description: ""
+        name: payment_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec7fb5fd-b097-4f99-9432-0ac48bf02ee2
+                stepCounter: 81450784-fd5d-40da-a8ce-dfd4443038cd
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb3b6ee7-c803-4463-b03d-133c05f8fde7
+          stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4dd9851e-f2f6-4be6-bac3-ae2ee36caeaa
+          stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          wrk_payment_type: 81450784-fd5d-40da-a8ce-dfd4443038cd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: wrk_payment_type
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'wrk_payment_type') }} `wrk_payment_type`
+        name: dim_payment_type
+        noLinkRefs: []
+  name: dim_payment_type
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

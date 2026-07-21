@@ -1,0 +1,112 @@
+fileVersion: 1
+id: e3dd8123-6051-4324-9b85-0abf5139995a
+name: v_agg_trips
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c31e8147-194e-439d-859b-01f7febe1dbc
+          stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+        config: {}
+        dataType: INT64
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: be6ccf97-3262-47f3-adfd-bbb256a95ab5
+                stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12a9d475-d618-4938-b4c3-4154b963d1d1
+          stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+        config: {}
+        dataType: DATE
+        description: ""
+        name: pickup_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 320f3a5c-0f64-48ab-b11a-c6f4d666ec0e
+                stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+            transform: date(`fct_yellow_cab_trips1`.`pickup_datetime`)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c314278-306f-4dde-adb6-55e59d0ca17c
+          stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ae3195d-d84f-4d64-977b-c5b250850b06
+                stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+            transform: sum(`fct_yellow_cab_trips1`.`total_amount`)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8fc28785-14a1-488b-94e8-e0977a89d006
+          stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cash
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ae3195d-d84f-4d64-977b-c5b250850b06
+                stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+            transform: sum(case when `fct_yellow_cab_trips1`.`payment_type` = 'Cash' then `fct_yellow_cab_trips1`.`total_amount` else 0 end)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2b6e67b-0699-4776-a7d2-193a81da65b9
+          stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9ae3195d-d84f-4d64-977b-c5b250850b06
+                stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+            transform: sum(case when `fct_yellow_cab_trips1`.`payment_type` = 'Credit Card' then `fct_yellow_cab_trips1`.`total_amount` else 0 end)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          fct_yellow_cab_trips1: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: fct_yellow_cab_trips1
+        join:
+          joinCondition: |-
+            FROM {{ ref('GOLD', 'fct_yellow_cab_trips1') }} `fct_yellow_cab_trips1`
+            GROUP BY 1, 2
+        name: v_agg_trips
+        noLinkRefs: []
+  name: v_agg_trips
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

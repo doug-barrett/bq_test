@@ -2,21 +2,22 @@ fileVersion: 1
 id: 5eeadc75-22f8-4890-9e79-6d22d55a361f
 name: rate_code
 operation:
-  config: {}
-  database: sales-eng-project
+  database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
   locationName: BRONZE
-  materializationType: table
   metadata:
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: f69c261e-32f8-4209-82c1-755a17e236ea
           stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: rate_code_id
         nullable: true
@@ -24,12 +25,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 0bf87fef-aadc-4c3f-b7b8-9ad86cb946fc
           stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: rate_code
         nullable: true
@@ -38,7 +43,7 @@ operation:
             transform: ""
         transform: ""
   name: rate_code
-  schema: NY_TAXI
+  schema: ""
   sqlType: Source
   type: sourceInput
   version: 1

@@ -1,0 +1,74 @@
+fileVersion: 1
+id: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+name: wrk_rate_code
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e5fd68ad-0310-40f4-93e7-b8bfe3b895e5
+          stepCounter: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+        config: {}
+        dataType: INT64
+        description: ""
+        name: rate_code_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f69c261e-32f8-4209-82c1-755a17e236ea
+                stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4fdd370c-9dad-4b5e-a5f4-115b2f45f84e
+          stepCounter: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+        config: {}
+        dataType: STRING
+        description: ""
+        name: rate_code
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0bf87fef-aadc-4c3f-b7b8-9ad86cb946fc
+                stepCounter: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          rate_code: 5eeadc75-22f8-4890-9e79-6d22d55a361f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: rate_code
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'rate_code') }} `rate_code`
+        name: wrk_rate_code
+        noLinkRefs: []
+  name: wrk_rate_code
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

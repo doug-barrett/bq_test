@@ -1,0 +1,158 @@
+fileVersion: 1
+id: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+name: v_agg_trips_vendor_date
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 668c0382-2ab2-49fe-8cd7-591bd72970bd
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: INT64
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: faf99c1c-1ed6-43e2-b3bd-8b0293b722fa
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c47d2bb1-66e0-4a88-ae1d-292d12c2401c
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: vendor_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe7faf8d-481c-41d7-872d-7d5bffe2d0e1
+                stepCounter: f9d90ef2-26b2-4bb7-80c8-2838a7de8a5d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad8cc3cb-d553-43f5-8b56-d22802b2be3b
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: DATE
+        description: ""
+        name: pickup_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7b671326-0f34-4fde-b4f1-8010bfb32fc8
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e649009-aee1-4614-b2fd-40d1a129cd91
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 76b809b5-7d10-4fd8-8782-ff7e22e42c57
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5246764f-bfdb-40c1-8acd-4d3c3ef11f3b
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cash
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7f1392a8-c874-4012-a949-ee0a0ac67809
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4b1472c5-8f13-4326-a0ab-3313af489455
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ee07558c-7421-4385-a5d8-0df9c6ddcdbd
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc21a319-8a1f-4f7c-b54f-7ed42768c2aa
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e7cb99d-6df0-4b59-a535-8f0d0682e73b
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68c288ef-4acd-440c-9305-7c0f150bf88e
+          stepCounter: b4991406-aa3c-4529-9e9c-adfdbddb54c7
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 121970cf-5572-4c00-b5ac-7f81f311be4e
+                stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          dim_vendor: f9d90ef2-26b2-4bb7-80c8-2838a7de8a5d
+          fct_agg_trips: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: dim_vendor
+          - locationName: SILVER
+            nodeName: fct_agg_trips
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'fct_agg_trips') }} `fct_agg_trips`
+            LEFT JOIN {{ ref('GOLD', 'dim_vendor') }} `dim_vendor`
+            ON `fct_agg_trips`.`vendor_id` = `dim_vendor`.`vendor_id`
+        name: v_agg_trips_vendor_date
+        noLinkRefs: []
+  name: v_agg_trips_vendor_date
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

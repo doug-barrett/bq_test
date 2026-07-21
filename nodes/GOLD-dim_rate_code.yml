@@ -1,0 +1,126 @@
+fileVersion: 1
+id: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+name: dim_rate_code
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION DISTINCT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6901c0ba-52d3-4ab2-89d0-55db66b32583
+          stepCounter: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: dim_rate_code_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 361076e8-0146-4b37-af2e-41eb5dbefbe7
+          stepCounter: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: rate_code_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5fd68ad-0310-40f4-93e7-b8bfe3b895e5
+                stepCounter: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e6a74528-49d4-4f91-9a50-63c362f8219a
+          stepCounter: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+        config: {}
+        dataType: STRING
+        description: ""
+        name: rate_code
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4fdd370c-9dad-4b5e-a5f4-115b2f45f84e
+                stepCounter: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3047ebd-fd3f-4655-a229-801a7b054ebc
+          stepCounter: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a356ee1-baed-4008-85bd-f5a9e23c63b9
+          stepCounter: 8b36fde0-8bdb-47b9-8fbc-0ffeaea7c604
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          wrk_rate_code: a51b9b94-fa5e-4dd6-b84e-9e9d7ad17f05
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: wrk_rate_code
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'wrk_rate_code') }} `wrk_rate_code`
+        name: dim_rate_code
+        noLinkRefs: []
+  name: dim_rate_code
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

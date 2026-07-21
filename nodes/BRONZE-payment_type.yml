@@ -2,21 +2,22 @@ fileVersion: 1
 id: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
 name: payment_type
 operation:
-  config: {}
-  database: sales-eng-project
+  database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
   locationName: BRONZE
-  materializationType: table
   metadata:
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: a503198f-6300-4a7e-99d1-60e1c68f9a8f
           stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: payment_type_id
         nullable: true
@@ -24,12 +25,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: f6634b12-be74-4396-a8b5-d7102576c4f0
           stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
         config: {}
         dataType: STRUCT<PAYMENT_TYPE_ID INT64, PAYMENT_TYPE STRING>
+        defaultValue: "NULL"
         description: ""
         name: payment_type
         nullable: true
@@ -38,7 +43,7 @@ operation:
             transform: ""
         transform: ""
   name: payment_type
-  schema: NY_TAXI
+  schema: ""
   sqlType: Source
   type: sourceInput
   version: 1

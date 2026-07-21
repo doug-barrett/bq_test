@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "173"
+includeSelector: "+{ location: \"SILVER\" name: \"fct_agg_trips\" }"
+name: Process All
+type: Job

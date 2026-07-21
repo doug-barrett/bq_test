@@ -2,21 +2,22 @@ fileVersion: 1
 id: cb5fd800-001b-4ec3-8e7a-02b758647f29
 name: vendor
 operation:
-  config: {}
-  database: sales-eng-project
+  database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
   locationName: BRONZE
-  materializationType: table
   metadata:
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 1f3930ef-ca9f-4edb-9b75-3f44f961f120
           stepCounter: cb5fd800-001b-4ec3-8e7a-02b758647f29
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: vendor_id
         nullable: true
@@ -24,12 +25,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 838422c3-36f7-43a1-bf52-8da553e46b5b
           stepCounter: cb5fd800-001b-4ec3-8e7a-02b758647f29
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: vendor_name
         nullable: true
@@ -38,7 +43,7 @@ operation:
             transform: ""
         transform: ""
   name: vendor
-  schema: NY_TAXI
+  schema: ""
   sqlType: Source
   type: sourceInput
   version: 1

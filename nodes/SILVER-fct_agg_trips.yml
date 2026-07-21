@@ -1,0 +1,152 @@
+fileVersion: 1
+id: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+name: fct_agg_trips
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: faf99c1c-1ed6-43e2-b3bd-8b0293b722fa
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c31e8147-194e-439d-859b-01f7febe1dbc
+                stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b671326-0f34-4fde-b4f1-8010bfb32fc8
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: true
+        name: pickup_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12a9d475-d618-4938-b4c3-4154b963d1d1
+                stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76b809b5-7d10-4fd8-8782-ff7e22e42c57
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c314278-306f-4dde-adb6-55e59d0ca17c
+                stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f1392a8-c874-4012-a949-ee0a0ac67809
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cash
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8fc28785-14a1-488b-94e8-e0977a89d006
+                stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee07558c-7421-4385-a5d8-0df9c6ddcdbd
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: total_amount_cc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2b6e67b-0699-4776-a7d2-193a81da65b9
+                stepCounter: e3dd8123-6051-4324-9b85-0abf5139995a
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e7cb99d-6df0-4b59-a535-8f0d0682e73b
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 121970cf-5572-4c00-b5ac-7f81f311be4e
+          stepCounter: 14a35d8a-03ae-422e-b0c3-fa447ab95a69
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          v_agg_trips: e3dd8123-6051-4324-9b85-0abf5139995a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: v_agg_trips
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'v_agg_trips') }} `v_agg_trips`
+        name: fct_agg_trips
+        noLinkRefs: []
+  name: fct_agg_trips
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node

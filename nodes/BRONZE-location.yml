@@ -2,21 +2,22 @@ fileVersion: 1
 id: 76158d45-0af6-4a61-8f5e-3346233347b3
 name: location
 operation:
-  config: {}
-  database: sales-eng-project
+  database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
   locationName: BRONZE
-  materializationType: table
   metadata:
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 2d926ad3-e6c2-49da-9cdc-466ec558a5ca
           stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
         config: {}
         dataType: INT64
+        defaultValue: "NULL"
         description: ""
         name: location_id
         nullable: true
@@ -24,12 +25,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 4f62c2b0-6318-468e-a4aa-d5add849e41c
           stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: borough
         nullable: true
@@ -37,12 +42,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 1f10fa12-71e0-4343-afe3-ae12e3813562
           stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: zone
         nullable: true
@@ -50,12 +59,16 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: 678f7ef6-90ae-49e5-b61c-c642cf4aff23
           stepCounter: 76158d45-0af6-4a61-8f5e-3346233347b3
         config: {}
         dataType: STRING
+        defaultValue: "NULL"
         description: ""
         name: service_zone
         nullable: true
@@ -64,7 +77,7 @@ operation:
             transform: ""
         transform: ""
   name: location
-  schema: NY_TAXI
+  schema: ""
   sqlType: Source
   type: sourceInput
   version: 1

@@ -1,0 +1,144 @@
+fileVersion: 1
+id: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+name: wrk_vendor_details
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0210b9e0-8e20-4802-8550-f4a29885b831
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: INT64
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1728cea-3d77-4087-b21b-61a8ae230585
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7311f30-bd69-46b5-b361-56d2d595a13b
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: phone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 341f417b-a0a0-4113-8b2e-5e1ee5c64bcd
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11bfdf2c-e5f5-41b9-8ee3-805f80cbd6f6
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: INT64
+        description: ""
+        name: drivers
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c0e73d2-97fa-4ebe-9ad4-97959a2fb5f0
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76f857cf-61ca-4dd4-9d91-8015ebaf3899
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: JSON
+        description: ""
+        name: hq_address_details
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cce95ebf-788e-48f9-a8e6-82aaf6659aea
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_address
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: STRING(hq_address_details.ADDRESS)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb14a3dd-6e63-485e-9dff-c37e0dcf4fdb
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_state
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: STRING(hq_address_details.STATE)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 415e7f6e-a906-41d6-8f8b-84c1f32b81cf
+          stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_country
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
+                stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+            transform: STRING(hq_address_details.COUNTRY)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          vendor_details: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: vendor_details
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'vendor_details') }} `vendor_details`
+        name: wrk_vendor_details
+        noLinkRefs: []
+  name: wrk_vendor_details
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

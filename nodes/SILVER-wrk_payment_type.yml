@@ -1,0 +1,82 @@
+fileVersion: 1
+id: 3aec2064-0991-41be-a87f-8b9375ba873b
+name: wrk_payment_type
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests:
+      - continueOnFailure: false
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: |-
+          SELECT 1 
+          FROM {{this}}
+          WHERE payment_type_id = 1
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c6db720-0db0-4150-8696-5efb608eafe5
+          stepCounter: 3aec2064-0991-41be-a87f-8b9375ba873b
+        config: {}
+        dataType: INT64
+        description: ""
+        name: payment_type_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a503198f-6300-4a7e-99d1-60e1c68f9a8f
+                stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7082c8d4-319f-4866-9bcf-d2f33a01a51e
+          stepCounter: 3aec2064-0991-41be-a87f-8b9375ba873b
+        config: {}
+        dataType: STRING
+        description: ""
+        name: payment_type1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6634b12-be74-4396-a8b5-d7102576c4f0
+                stepCounter: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          payment_type: 9d7645da-7bc7-4ede-8ed7-066d5b2d30bd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: payment_type
+        join:
+          joinCondition: FROM {{ ref('BRONZE', 'payment_type') }} `payment_type`
+        name: wrk_payment_type
+        noLinkRefs: []
+  name: wrk_payment_type
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

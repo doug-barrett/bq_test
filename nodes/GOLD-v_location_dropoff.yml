@@ -1,0 +1,138 @@
+fileVersion: 1
+id: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+name: v_location_dropoff
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8abd0c9-4459-41ff-be61-c3d24bf79bbe
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dim_location_dropoff_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4964bac1-2509-4e20-ae21-da7e1d076b14
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 980dbad7-2473-4929-9eb2-d02f150d689f
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: INT64
+        description: ""
+        name: dropoff_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 419fa814-b253-4544-83cd-2a3060bcc5e5
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc688822-a5aa-4aa7-96c8-597a839e9ed7
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dropoff_borough
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4123b1d6-3ffa-46b4-8bed-89a490fe633a
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48626b33-3a79-4a28-8eec-8652be96b59d
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dropoff_zone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c402aa9-a701-4204-9be0-92e74687be73
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24d4bfc7-23a5-4efb-a0bd-d19e56719637
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dropoff_service_zone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a6442bf-5ed7-4638-abe2-704b64dd8aaf
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dc9c46b7-d790-4174-99c5-22e2e8ea5c0d
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ddcfd28e-c70b-44aa-92a0-c58f236b0ba1
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e070acbd-71ef-4614-a43c-08eddfb23e77
+          stepCounter: 5f5ce113-4464-4484-bdb3-6cbdd89287b1
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: caf93b1f-7549-48e0-aaf7-eb2e25c8a04b
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          dim_location: 551ab380-11c2-4d53-8ab9-619d934b8f60
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: dim_location
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'dim_location') }} `dim_location`
+        name: v_location_dropoff
+        noLinkRefs: []
+  name: v_location_dropoff
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

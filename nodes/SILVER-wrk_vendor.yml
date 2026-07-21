@@ -1,0 +1,150 @@
+fileVersion: 1
+id: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+name: wrk_vendor
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c96b0b9-2ab0-4fe7-aa69-27dd15ee8607
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: INT64
+        description: ""
+        name: vendor_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f3930ef-ca9f-4edb-9b75-3f44f961f120
+                stepCounter: cb5fd800-001b-4ec3-8e7a-02b758647f29
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 404391f2-4823-4762-a76c-9c08875ce466
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: STRING
+        description: ""
+        name: vendor_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 838422c3-36f7-43a1-bf52-8da553e46b5b
+                stepCounter: cb5fd800-001b-4ec3-8e7a-02b758647f29
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: da48621c-860f-4637-a54a-f12d99f6007c
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: STRING
+        description: ""
+        name: phone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7311f30-bd69-46b5-b361-56d2d595a13b
+                stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02600ec7-4535-4224-afbe-88c0bbdaf9a8
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: INT64
+        description: ""
+        name: drivers
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11bfdf2c-e5f5-41b9-8ee3-805f80cbd6f6
+                stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83f1700a-a5df-4e88-9ff2-11df6d7417ca
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_address
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cce95ebf-788e-48f9-a8e6-82aaf6659aea
+                stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1822d8f2-fbfc-40b6-9f88-74bb3e6fb876
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_state
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb14a3dd-6e63-485e-9dff-c37e0dcf4fdb
+                stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a5878f4-47f0-4cc3-8566-7a052a7e3c77
+          stepCounter: 724692a3-f3be-4f9d-b1aa-95b1b289fc22
+        config: {}
+        dataType: STRING
+        description: ""
+        name: hq_country
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 415e7f6e-a906-41d6-8f8b-84c1f32b81cf
+                stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          vendor: cb5fd800-001b-4ec3-8e7a-02b758647f29
+          wrk_vendor_details: ce771a7f-27cd-4658-9e17-4cabf618f3e7
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: vendor
+          - locationName: SILVER
+            nodeName: wrk_vendor_details
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'vendor') }} `vendor`
+            INNER JOIN {{ ref('SILVER', 'wrk_vendor_details') }} `wrk_vendor_details`
+            ON `vendor`.`vendor_id` = `wrk_vendor_details`.`vendor_id`
+        name: wrk_vendor
+        noLinkRefs: []
+  name: wrk_vendor
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,138 @@
+fileVersion: 1
+id: 3026d518-0452-4557-a68a-38ec447030c8
+name: v_location_pickup
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION ALL
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: GOLD
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 754a0800-eff9-448d-af33-24ec89a6955f
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: STRING
+        description: ""
+        name: dim_location_pickup_key
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4964bac1-2509-4e20-ae21-da7e1d076b14
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6521ef3a-b316-4dd5-85f6-1b03aee52fb8
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: INT64
+        description: ""
+        name: pickup_location_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 419fa814-b253-4544-83cd-2a3060bcc5e5
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 650b54f7-553f-40b5-88fc-20ee2c09f0e4
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: STRING
+        description: ""
+        name: pickup_borough
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4123b1d6-3ffa-46b4-8bed-89a490fe633a
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c94af78c-b6d3-4c39-b186-187f7798ae71
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: STRING
+        description: ""
+        name: pickup_zone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c402aa9-a701-4204-9be0-92e74687be73
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ff890cf-7f1e-4122-920d-2427d4ffa09f
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: STRING
+        description: ""
+        name: pickup_service_zone
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a6442bf-5ed7-4638-abe2-704b64dd8aaf
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06443c91-f006-4e97-9690-47426800b2c4
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_create_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ddcfd28e-c70b-44aa-92a0-c58f236b0ba1
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c0ed1ce-864f-41f6-934a-fab0c7c9d37e
+          stepCounter: 3026d518-0452-4557-a68a-38ec447030c8
+        config: {}
+        dataType: TIMESTAMP
+        description: ""
+        name: system_update_date
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: caf93b1f-7549-48e0-aaf7-eb2e25c8a04b
+                stepCounter: 551ab380-11c2-4d53-8ab9-619d934b8f60
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          dim_location: 551ab380-11c2-4d53-8ab9-619d934b8f60
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: dim_location
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'dim_location') }} `dim_location`
+        name: v_location_pickup
+        noLinkRefs: []
+  name: v_location_pickup
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
