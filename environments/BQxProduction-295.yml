@@ -1,5 +1,17 @@
 fileVersion: 1
 id: "295"
-mappingDefinitions: {}
+mappingDefinitions:
+  BRONZE:
+    database: sales-eng-project
+    schema: NY_TAXI
+  BRONZE_TPCH:
+    database: sales-eng-project
+    schema: TPCH
+  GOLD:
+    database: sales-eng-project
+    schema: DOUG_PRD
+  SILVER:
+    database: sales-eng-project
+    schema: DOUG_PRD
 name: BQx Production
 type: Environment
