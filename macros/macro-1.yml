@@ -2,6 +2,85 @@ fileVersion: 1
 id: "1"
 macroString: |+
   {# ========================================================================
+    Purpose          : Executes data quality tests associated with the node
+                       and its columns, based on the configured run order.
+                       Node-level tests (test1, test2) respect the "Enable
+                       Tests" toggle. Each is a string of the form
+                         "<sql>", "<Before|After>", <true|false>
+                       Column-level tests (@tests annotation) run
+                       independently of the toggle, After phase only.
+    Input Parameters : runOrder (String) - 'Before' or 'After'
+    Returns          : Rendered test SQL for the matching run order.
+  ========================================================================= #}
+  {%- macro run_tests(runOrder) -%}
+
+      {# == Column-level @tests: independent of the "Enable Tests" toggle. == #}
+      {%- if runOrder == 'After' -%}
+          {%- for column in columns -%}
+              {%- set columnTests = column.get('tests') -%}
+              {%- if columnTests is mapping -%}
+                  {%- for test in columnTests.get('parameters', []) -%}
+                      {%- if test | trim | lower == "null" -%}
+                          {%- set templateString = "SELECT 1 FROM " + ref(node.location.name, node.name) + " WHERE " + column.name + " IS NULL " -%}
+                          {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                          {{ templateString }}
+                      {%- endif -%}
+                      {%- if test | trim | lower == "unique" -%}
+                          {%- set templateString = "SELECT 1 FROM " + ref(node.location.name, node.name) + " GROUP BY " + column.name + " HAVING COUNT(*) > 1" -%}
+                          {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                          {{ templateString }}
+                      {%- endif -%}
+                  {%- endfor -%}
+              {%- endif -%}
+          {%- endfor -%}
+      {%- endif -%}
+
+      {# == Node-level tests: gated by the "Enable Tests" toggle. == #}
+      {%- if config.testsEnabled -%}
+
+          {%- set ns = namespace(cnt=0) -%}
+
+          {%- for rawTest in [config.test1 | default(''), config.test2 | default('')] -%}
+              {%- set rawTest = rawTest | trim -%}
+              {%- if rawTest | length > 0 -%}
+
+                  {# -- peel the trailing boolean (continue-on-failure) -- #}
+                  {%- set idxBool = rawTest.rfind(',') -%}
+                  {%- if idxBool > 0 -%}
+                      {%- set boolPart = rawTest[idxBool + 1:] | trim | lower -%}
+                      {%- set continueOnFailure = (boolPart == 'true') -%}
+                      {%- set remainder = rawTest[:idxBool] | trim -%}
+
+                      {# -- peel the run order -- #}
+                      {%- set idxOrder = remainder.rfind(',') -%}
+                      {%- if idxOrder > 0 -%}
+                          {%- set orderPart = remainder[idxOrder + 1:] | trim | replace('"', '') | trim -%}
+                          {%- set sqlPart = remainder[:idxOrder] | trim -%}
+
+                          {# -- strip wrapping quotes off the SQL -- #}
+                          {%- if sqlPart.startswith('"') -%}{%- set sqlPart = sqlPart[1:] -%}{%- endif -%}
+                          {%- if sqlPart.endswith('"') -%}{%- set sqlPart = sqlPart[:-1] -%}{%- endif -%}
+
+                          {%- if orderPart | lower == runOrder | lower -%}
+                              {%- set ns.cnt = ns.cnt + 1 -%}
+                              {{ test_stage(
+                                  ('Pre Load Test ' if runOrder == 'Before' else 'Post Load Test ') ~ ns.cnt,
+                                  continueOnFailure
+                              ) }}
+                              {{ sqlPart }}
+                          {%- endif -%}
+
+                      {%- endif -%}
+                  {%- endif -%}
+              {%- endif -%}
+          {%- endfor -%}
+
+      {%- endif -%}
+  {%- endmacro -%}
+
+
+
+  {# ========================================================================
   Description:
   Generates a correctly formatted SQL default value based on the provided datatype
   and input value. Ensures proper quoting, function handling, and datatype alignment
@@ -160,59 +239,6 @@ macroString: |+
 
   {%- endmacro %}
 
-  {# ========================================================================
-    Purpose          : Executes data quality tests associated with the node
-                       and its columns, based on the configured run order.
-                       Supports running tests either before or after data
-                       insertion, and respects the test continuation
-                       behavior on failure.
-    Input Parameters : runOrder (String)
-                       - Determines when the tests should be executed.
-                         Expected values: 'Before' or 'After'
-    Returns          : Rendered SQL statements for executing the applicable
-                       node-level and column-level data quality tests.
-                       No output is generated if tests are disabled.
-  ========================================================================= #}
-  {%- macro run_tests(runOrder) %}
-
-      {%- if runOrder == 'Before' %}
-          {%- set configTests = config.get('preTests', {}) %}
-          {%- set testName = ': Pre-Load Test ' %}
-      {%- else %}
-          {%- set configTests = config.get('postTests', {}) %}
-          {%- set testName = ': Post-Load Test ' %}
-      {%- endif %}
-
-      {# --- Tests --- #}
-      {%- if configTests is defined and configTests.parameters is defined %}
-          {%- for test in configTests.parameters %}
-              {%- set testParts = test.split(':', 1) %}
-              {%- set continueOnFailure = testParts[0] | trim | lower == 'continueonfailure' %}
-              {{ test_stage(node.name + testName + loop.index|string, continueOnFailure) }}
-              {{ testParts[-1] | trim }}
-          {%- endfor %}
-      {%- endif %}
-
-      {%- if runOrder == 'After' %}
-          {%- for column in columns %}
-              {%- if column.tests is mapping and column.tests.parameters is defined %}
-                  {%- for test in column.tests.parameters %}
-                      {%- if test | trim | lower == "null" %}
-                          {%- set templateString = "SELECT 1 FROM " +  ref(node.location.name, node.name)  + " WHERE " + column.name + " IS NULL " %}                      
-                          {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
-                          {{ templateString }}
-                      {%- endif %}
-                      {%- if test | trim | lower == "unique" %}
-                          {%- set templateString = "SELECT 1 FROM " + ref(node.location.name, node.name) + " GROUP BY " + column.name +  " HAVING COUNT(*) > 1" %}                      
-                          {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
-                          {{ templateString }}
-                      {%- endif %}
-                  {%- endfor %}
-              {%- endif %}
-          {%- endfor %}
-      {%- endif %}
-
-  {%- endmacro %}
 
   {# ===================================================================================================== 
   Description:

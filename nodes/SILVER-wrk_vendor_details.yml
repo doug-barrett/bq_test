@@ -21,9 +21,16 @@ operation:
   locationName: SILVER
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: false
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: SELECT 1 FROM {{this}} WHERE 1 = 0
     columns:
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
         columnReference:
           columnCounter: 0210b9e0-8e20-4802-8550-f4a29885b831
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -37,7 +44,9 @@ operation:
               - columnCounter: b1728cea-3d77-4087-b21b-61a8ae230585
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: f7311f30-bd69-46b5-b361-56d2d595a13b
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -51,7 +60,9 @@ operation:
               - columnCounter: 341f417b-a0a0-4113-8b2e-5e1ee5c64bcd
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 11bfdf2c-e5f5-41b9-8ee3-805f80cbd6f6
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -65,7 +76,9 @@ operation:
               - columnCounter: 9c0e73d2-97fa-4ebe-9ad4-97959a2fb5f0
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 76f857cf-61ca-4dd4-9d91-8015ebaf3899
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -79,7 +92,9 @@ operation:
               - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: cce95ebf-788e-48f9-a8e6-82aaf6659aea
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -93,7 +108,9 @@ operation:
               - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: STRING(hq_address_details.ADDRESS)
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: fb14a3dd-6e63-485e-9dff-c37e0dcf4fdb
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -107,7 +124,9 @@ operation:
               - columnCounter: c350e905-de6d-4a9b-bb9a-02f59f736331
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: STRING(hq_address_details.STATE)
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 415e7f6e-a906-41d6-8f8b-84c1f32b81cf
           stepCounter: ce771a7f-27cd-4658-9e17-4cabf618f3e7
@@ -122,7 +141,9 @@ operation:
                 stepCounter: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125
             transform: STRING(hq_address_details.COUNTRY)
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
     sourceMapping:
       - aliases:
           vendor_details: f6e9fb5e-5a7c-4a73-aae3-6b34d14e2125

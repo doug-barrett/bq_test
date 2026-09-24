@@ -1,10 +1,10 @@
 fileVersion: 2
 id: "468"
-isDisabled: false
+isDisabled: true
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |-
     capitalized: SQL Work
     short: wrk
     plural: SQL Works
@@ -27,5 +27,21 @@ metadata:
         type: toggleButton
         default: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+    - groupName: Control Options
+      items:
+
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: false
+
+      - displayName: Node Test
+        attributeName: test1
+        type: textBox
+
+      - displayName: Node Test
+        attributeName: test2
+        type: textBox
 name: Work V2
 type: NodeType
