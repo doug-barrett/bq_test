@@ -403,26 +403,26 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
+          columnCounter: 068f474e-0cf0-4a43-be26-a2c1c7e6857a
+          stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
+        config: {}
+        dataType: FLOAT64
+        description: ""
+        name: congestion_surcharge
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c180160-5b0d-40c2-b4a6-66b04a66dc9c
+                stepCounter: c6b15135-077b-45d4-8eee-a2f7f6887cb8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
           columnCounter: a59a2020-3047-435a-979c-493767ccf302
           stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
         config: {}
         dataType: FLOAT64
         description: ""
         name: airport_fee
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 0ca28fec-f362-4006-8706-1a376149dc30
-                stepCounter: c6b15135-077b-45d4-8eee-a2f7f6887cb8
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8d7735ab-2e1b-487c-b6e6-b7d9ff73306e
-          stepCounter: 48f6f4ad-ee13-4c43-a845-d4492a825e6d
-        config: {}
-        dataType: FLOAT64
-        description: ""
-        name: airport_fee1
         nullable: true
         sourceColumnReferences:
           - columnReferences:
