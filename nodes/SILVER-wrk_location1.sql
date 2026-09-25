@@ -6,5 +6,6 @@ SELECT
      `location_id` AS `location_id`,
      `borough` AS `borough`,
      `zone` AS `zone`,
-     `service_zone` AS `service_zone`
+     `service_zone` AS `service_zone`,
+     cast(zone||service_zone as string) as full_zone
 FROM {{ ref('BRONZE', 'location') }} `location`
