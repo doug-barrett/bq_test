@@ -21,12 +21,22 @@ operation:
   locationName: GOLD
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: |-
+          SELECT 1 
+          FROM {{this}}
+          WHERE payment_type_id < 0
     columns:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 1b740593-abc9-420c-a99f-2bb854102c84
           stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
@@ -40,7 +50,9 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 85c90d51-9163-4860-a643-45933b436d00
           stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
@@ -55,7 +67,9 @@ operation:
               - columnCounter: 9c6db720-0db0-4150-8696-5efb608eafe5
                 stepCounter: 3aec2064-0991-41be-a87f-8b9375ba873b
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 1d46bb36-0267-408b-8f51-e784436a27dc
           stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
@@ -72,7 +86,9 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: cb3b6ee7-c803-4463-b03d-133c05f8fde7
           stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
@@ -89,7 +105,9 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
         columnReference:
           columnCounter: 4dd9851e-f2f6-4be6-bac3-ae2ee36caeaa
           stepCounter: e46250e5-ae4f-4ad8-88ef-f690866aa4b6
@@ -104,7 +122,9 @@ operation:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
     sourceMapping:
       - aliases:
           wrk_payment_type: 81450784-fd5d-40da-a8ce-dfd4443038cd

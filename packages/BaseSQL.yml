@@ -1,0 +1,13 @@
+config:
+  entities:
+    nodeTypes:
+      "705":
+        defaultStorageLocation: null
+        isDisabled: false
+  packageVariables: ""
+fileVersion: 1
+id: "@coalesce/bigquery/bigquery-base-node-types-sql"
+name: BaseSQL
+packageID: "@coalesce/bigquery/bigquery-base-node-types-sql"
+releaseID: 7ad0bede-2e36-454e-b265-71d6bc8e5ebd
+type: Package

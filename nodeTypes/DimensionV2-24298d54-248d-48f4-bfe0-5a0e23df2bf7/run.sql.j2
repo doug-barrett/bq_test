@@ -1,9 +1,44 @@
-{{ stage('Truncate Dimension Table') }}
-TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
-
+{# V2 Dimension — run template. BigQuery dialect.
+   Default: truncate + insert (full reload).
+   When @incremental is set:
+     - @incrementalStrategy("insert_overwrite") [default]: partition-based MERGE
+       that replaces exactly the partitions the node's own SQL produced, so the
+       write scope always equals the read scope. Narrowing a node's WHERE is
+       what makes it cheap; the MERGE is what preserves the partitions the node
+       has stopped recomputing.
+     - @incrementalStrategy("merge"): key-based MERGE on @mergeKey — upserts
+       matched rows, inserts new rows, and deletes target rows no longer in
+       source (full-refresh semantics, only changed rows touched).
+   Coalesce executes each stage() as a SEPARATE BigQuery job, so a scripting
+   variable must be DECLAREd and consumed inside one stage. Splitting the
+   DECLARE from its MERGE fails at runtime with "Unrecognized name".
+   Both strategies abort on an empty temp table. Without that guard an upstream
+   outage is silent: ARRAY_AGG over zero rows is NULL and UNNEST(NULL) matches
+   nothing, so insert_overwrite would report success having changed nothing,
+   and merge would delete every row in the target.
+   cteString carries any WITH block; join carries FROM/JOIN. #}
+{%- if config.incremental is defined and config.incremental %}
+{%- set strategy = config.incrementalStrategy | default('insert_overwrite') %}
+{%- set target = ref_no_link(node.location.name, node.name) %}
+{%- set tmp = ref_no_link(node.location.name, node.name ~ '__tmp') %}
+{%- if strategy == 'merge' %}
+{# === Incremental: key-based MERGE (upsert) === #}
+{%- set merge_key = config.mergeKey | default('') %}
+{%- if not merge_key %}
+{# merge requires @mergeKey; a missing/empty one would emit `ON DEST.`` = SRC.``
+   (invalid SQL at runtime). Fail fast, mirroring the insert_overwrite @partitionBy guard. #}
+{{ stage('Check Merge Key Config') }}
+RAISE USING MESSAGE = 'merge incremental requires @mergeKey, but none is set on node "{{ node.name }}". Add @mergeKey("<column>") or switch to @incrementalStrategy("insert_overwrite") with @partitionBy("<column>").';
+{%- else %}
+{# expiration_timestamp bounds the leak: a run that fails between here and the
+   Drop Temp Table stage would otherwise strand a full copy of the node output
+   in a writable dataset indefinitely. #}
+{{ stage('Create Temp Table') }}
+CREATE OR REPLACE TABLE {{ tmp }}
+OPTIONS(expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 12 HOUR))
+AS
 {% for source in sources %}
-{{ stage('Load Dimension Table') }}
-INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+{{ source.cteString }}
 SELECT
 {% for col in source.columns %}
     {{ get_source_transform(col) }} AS `{{ col.name }}`
@@ -11,3 +46,128 @@ SELECT
 {% endfor %}
 {{ source.join }}
 {% endfor %}
+
+{{ stage('Merge') }}
+DECLARE src_rows INT64;
+SET src_rows = (SELECT COUNT(*) FROM {{ tmp }});
+IF src_rows = 0 THEN
+  RAISE USING MESSAGE = 'incremental merge source produced zero rows for node "{{ node.name }}" — refusing to run a MERGE that would delete every row in the target. Check upstream refs before re-running.';
+END IF;
+MERGE INTO {{ target }} DEST
+USING {{ tmp }} SRC
+ON DEST.`{{ merge_key }}` = SRC.`{{ merge_key }}`
+WHEN NOT MATCHED BY SOURCE THEN DELETE
+WHEN MATCHED THEN UPDATE SET
+{% for col in sources[0].columns %}
+    `{{ col.name }}` = SRC.`{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+WHEN NOT MATCHED THEN INSERT (
+{% for col in sources[0].columns %}
+    `{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+) VALUES (
+{% for col in sources[0].columns %}
+    SRC.`{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+)
+
+{{ stage('Drop Temp Table') }}
+DROP TABLE IF EXISTS {{ tmp }}
+
+{%- endif %}
+{%- else %}
+{# === Incremental: partition-based MERGE insert_overwrite === #}
+{%- set partition_col = config.partitionBy | default('') %}
+{%- set partition_type = config.partitionType | default('date') %}
+{%- if not partition_col %}
+{# insert_overwrite requires @partitionBy; a missing/empty one is a developer
+   misconfiguration that would otherwise emit invalid SQL (empty identifier
+   in ARRAY_AGG / DECLARE / MERGE). Fail loudly with an actionable message. #}
+{{ stage('Check Partition Config') }}
+RAISE USING MESSAGE = 'insert_overwrite incremental requires @partitionBy, but none is set on node "{{ node.name }}". Add @partitionBy("<column>") or switch to @incrementalStrategy("merge") with @mergeKey("<column>").';
+{%- else %}
+{{ stage('Create Temp Table') }}
+CREATE OR REPLACE TABLE {{ tmp }}
+OPTIONS(expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 12 HOUR))
+AS
+{% for source in sources %}
+{{ source.cteString }}
+SELECT
+{% for col in source.columns %}
+    {{ get_source_transform(col) }} AS `{{ col.name }}`
+    {%- if not loop.last -%}, {% endif %}
+{% endfor %}
+{{ source.join }}
+{% endfor %}
+
+{# partition_col may be an expression like DATE(fivetran_synced_at), so it must
+   NOT be backticked. #}
+{{ stage('Merge') }}
+DECLARE partitions_to_replace ARRAY<{{ partition_type }}>;
+DECLARE null_partition_rows INT64;
+{# A NULL partition value would make ARRAY_AGG build an array with a null element,
+   which BigQuery rejects when materializing it into the variable — the raw error is
+   "Array cannot have a null element", which names neither the node nor the column.
+   Such a row is also unmergeable in principle: IN UNNEST never matches NULL, so it
+   could never be replaced on a later run. Fail with something actionable instead. #}
+SET null_partition_rows = (SELECT COUNTIF({{ partition_col }} IS NULL) FROM {{ tmp }});
+IF null_partition_rows > 0 THEN
+  RAISE USING MESSAGE = 'incremental insert_overwrite found rows with a NULL partition column ({{ partition_col }}) on node "{{ node.name }}" — a partition-scoped MERGE cannot place or replace them. Exclude or coalesce those rows in the node SQL.';
+END IF;
+SET (partitions_to_replace) = (
+  SELECT AS STRUCT ARRAY_AGG(DISTINCT {{ partition_col }})
+  FROM {{ tmp }}
+);
+IF ARRAY_LENGTH(IFNULL(partitions_to_replace, [])) = 0 THEN
+  RAISE USING MESSAGE = 'incremental insert_overwrite source produced zero rows for node "{{ node.name }}" — refusing a no-op MERGE that would leave the target silently stale. Check upstream refs before re-running.';
+END IF;
+MERGE INTO {{ target }} DEST
+USING {{ tmp }} SRC
+ON FALSE
+WHEN NOT MATCHED BY SOURCE AND {{ partition_col }} IN UNNEST(partitions_to_replace) THEN DELETE
+WHEN NOT MATCHED THEN INSERT (
+{% for col in sources[0].columns %}
+    `{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+) VALUES (
+{% for col in sources[0].columns %}
+    SRC.`{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+)
+
+{{ stage('Drop Temp Table') }}
+DROP TABLE IF EXISTS {{ tmp }}
+
+{%- endif %}
+{%- endif %}
+
+{%- else %}
+{# === Default: truncate + insert (full reload) === #}
+{{ stage('Truncate') }}
+
+TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
+
+{% for source in sources %}
+{{ stage('Insert') }}
+
+INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+(
+{% for col in source.columns %}
+    `{{ col.name }}`
+    {%- if not loop.last -%},{% endif %}
+{% endfor %}
+)
+{{ source.cteString }}
+SELECT
+{% for col in source.columns %}
+    {{ get_source_transform(col) }} AS `{{ col.name }}`
+    {%- if not loop.last -%}, {% endif %}
+{% endfor %}
+{{ source.join }}
+{% endfor %}
+{%- endif %}

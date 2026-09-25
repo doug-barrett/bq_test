@@ -1,12 +1,34 @@
-{{ stage('Create Dimension Table') }}
-CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }} AS
+{# V2 Dimension — CTAS empty shell. cteString carries any WITH block; join
+   carries the FROM/JOIN. LIMIT 0 builds an empty typed table (create = DDL).
+   Coalesce strips @annotations before exposing these vars. BigQuery dialect.
+   SQL-first analog of the V1 Dimension type's table materialization.
+
+   @partitionBy is the MERGE write-scope column and does NOT emit physical
+   PARTITION BY. Physical partitioning is opt-in via @physicalPartitionBy /
+   @clusterBy so a template change cannot mark every incremental table
+   alteredTable. BigQuery cannot ALTER partitioning onto an existing table;
+   deploy drops and recreates any node whose CREATE SQL gained PARTITION BY.
+   Only annotate nodes whose SQL can reproduce the table (not append-only /
+   rolling-window-only). The {%- if %} forms are whitespace-stripped so
+   unannotated nodes render the same CREATE OR REPLACE TABLE … AS as before.
+   Enforced in CI by scripts/check-incremental-config.mjs. #}
+{{ stage('Create Table') }}
+
+CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+{%- if config.physicalPartitionBy | default('') %}
+PARTITION BY {{ config.physicalPartitionBy }}
+{%- endif %}
+{%- if config.clusterBy | default('') %}
+CLUSTER BY {{ config.clusterBy }}
+{%- endif %}
+AS
 {% for source in sources %}
+{{ source.cteString }}
 SELECT
 {% for col in source.columns %}
     {{ get_source_transform(col) }} AS `{{ col.name }}`
     {%- if not loop.last -%}, {% endif %}
 {% endfor %}
 {{ source.join }}
-WHERE 1=0
-{% if not loop.last %}UNION ALL{% endif %}
+LIMIT 0
 {% endfor %}

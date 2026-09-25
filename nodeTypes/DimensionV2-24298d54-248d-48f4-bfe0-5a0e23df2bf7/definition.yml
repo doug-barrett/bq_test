@@ -1,13 +1,53 @@
 fileVersion: 2
 id: 24298d54-248d-48f4-bfe0-5a0e23df2bf7
-isDisabled: true
+isDisabled: false
 metadata:
   defaultStorageLocation: GOLD
   error: null
   nodeMetadataSpec: |
-    capitalized: Dimension V2
-    short: dim
+    capitalized: Dimension
+    short: DIMv2
     plural: Dimensions V2
     tagColor: '#1E339A'
+
+    config:
+    - groupName: Incremental
+      items:
+      - displayName: Incremental Load
+        attributeName: incremental
+        type: toggleButton
+        default: false
+      - displayName: Incremental Strategy
+        attributeName: incrementalStrategy
+        type: dropdownSelector
+        default: insert_overwrite
+        options:
+        - insert_overwrite
+        - merge
+        isRequired: false
+      - displayName: Partition By
+        attributeName: partitionBy
+        type: textBox
+        isRequired: false
+      - displayName: Partition Type
+        attributeName: partitionType
+        type: dropdownSelector
+        default: date
+        options:
+        - date
+        - timestamp
+        isRequired: false
+      - displayName: Merge Key
+        attributeName: mergeKey
+        type: textBox
+        isRequired: false
+      - displayName: Physical Partition By
+        attributeName: physicalPartitionBy
+        type: textBox
+        isRequired: false
+      - displayName: Cluster By
+        attributeName: clusterBy
+        type: textBox
+        isRequired: false
 name: Dimension V2
 type: NodeType
